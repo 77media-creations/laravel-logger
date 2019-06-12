@@ -26,7 +26,7 @@
 - [License](#license)
 
 ### About
-Laravel logger is an activity event logger for your laravel application. It comes out the box with ready to use with dashboard to view your activity. Laravel logger can be added as a middleware or called through a trait. Easily have an Activity Log. This package is easily configurable and customizable. Supports Laravel 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, and 5.8+
+Laravel logger is an activity event logger for your laravel application. It comes out the box with ready to use with dashboard to view your activity. Laravel logger can be added as a middleware or called through a trait. This package is easily configurable and customizable. Supports Laravel 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, and 5.7+
 
 Laravel logger can work out the box with or without the following roles packages:
 * [jeremykenedy/laravel-roles](https://github.com/jeremykenedy/laravel-roles)
@@ -102,7 +102,7 @@ Register the package with laravel in `config/app.php` under `providers` with the
 5. Optionally publish the packages views, config file, assets, and language files by running the following from your projects root folder:
 
 ```bash
-    php artisan vendor:publish --tag=LaravelLogger
+    php artisan vendor:publish --tag=laravellogger
 ```
 
 ### Configuration
@@ -280,7 +280,7 @@ To use the trait:
 
 ### Opening an Issue
 Before opening an issue there are a couple of considerations:
-* A **star** on this project shows support and is way to say thank you to all the contributors. If you open an issue without a star, *your issue may be closed without consideration.* Thank you for understanding and the support. You are all awesome!
+* If you did not **star this repo** *I will close your issue immediatly without consideration.*
 * **Read the instructions** and make sure all steps were *followed correctly*.
 * **Check** that the issue is not *specific to your development environment* setup.
 * **Provide** *duplication steps*.
@@ -289,7 +289,6 @@ Before opening an issue there are a couple of considerations:
 * **Check** to see if the issue you are *reporting is a duplicate* of a previous reported issue.
 * **Following these instructions show me that you have tried.**
 * If you have a questions send me an email to jeremykenedy@gmail.com
-* Need some help, I can do my best on Slack: https://opensourcehelpgroup.slack.com
 * Please be considerate that this is an open source project that I provide to the community for FREE when opening an issue. 
 
 ### License

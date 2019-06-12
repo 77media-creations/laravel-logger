@@ -16,5 +16,3 @@
         @include('LaravelLogger::scripts.datatables')
     @endif
 @endif
-
-@include('LaravelLogger::scripts.add-title-attribute')

@@ -68,16 +68,10 @@ if (Request::is('activity/cleared')) {
                 <tr @if($drilldownStatus && $hoverable) class="clickable-row" data-href="{{$prependUrl . $activity->id}}" data-toggle="tooltip" title="{{trans('LaravelLogger::laravel-logger.tooltips.viewRecord')}}" @endif >
                     <td>
                         <small>
-                            @if($hoverable)
-                                {{ $activity->id }}
-                            @else
-                                <a href="{{$prependUrl . $activity->id}}">
-                                    {{ $activity->id }}
-                                </a>
-                            @endif
+                            {{ $activity->id }}
                         </small>
                     </td>
-                    <td title="{{ $activity->created_at }}">
+                    <td>
                         {{ $activity->timePassed }}
                     </td>
                     <td>
@@ -136,7 +130,7 @@ if (Request::is('activity/cleared')) {
                             {{ $activity->methodType }}
                         </span>
                     </td>
-                    <td>
+                    <td class="ellipsis">
                         @if($hoverable)
                             {{ showCleanRoutUrl($activity->route) }}
                         @else

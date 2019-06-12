@@ -7,14 +7,14 @@
 |
 */
 
-Route::group(['prefix' => 'activity', 'namespace' => 'jeremykenedy\LaravelLogger\App\Http\Controllers', 'middleware' => ['web', 'auth', 'activity']], function () {
+Route::group(['prefix' => 'admin/activity', 'namespace' => 'jeremykenedy\LaravelLogger\App\Http\Controllers', 'middleware' => ['web', 'auth', 'site_admin']], function () {
 
     // Dashboards
     Route::get('/', 'LaravelLoggerController@showAccessLog')->name('activity');
     Route::get('/cleared', ['uses' => 'LaravelLoggerController@showClearedActivityLog'])->name('cleared');
 
     // Drill Downs
-    Route::get('/log/{id}', 'LaravelLoggerController@showAccessLogEntry');
+    Route::get('/log/{id}', 'LaravelLoggerController@showAccessLogEntry')->name('showActivity');
     Route::get('/cleared/log/{id}', 'LaravelLoggerController@showClearedAccessLogEntry');
 
     // Forms

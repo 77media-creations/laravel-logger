@@ -73,6 +73,7 @@ class LaravelLoggerController extends BaseController
             $totalActivities = $activities->count();
         }
 
+
         self::mapAdditionalDetails($activities);
 
         $data = [
@@ -140,12 +141,13 @@ class LaravelLoggerController extends BaseController
      */
     public function clearActivityLog(Request $request)
     {
-        $activities = Activity::all();
+        // $activities = Activity::all();
+        $activities = Activity::where('userType', 'Crawler')->get();
         foreach ($activities as $activity) {
             $activity->delete();
         }
 
-        return redirect('activity')->with('success', trans('LaravelLogger::laravel-logger.messages.logClearedSuccessfuly'));
+        return redirect()->route('activity')->with('success', trans('LaravelLogger::laravel-logger.messages.logClearedSuccessfuly'));
     }
 
     /**
@@ -240,7 +242,7 @@ class LaravelLoggerController extends BaseController
             $activity->forceDelete();
         }
 
-        return redirect('activity')->with('success', trans('LaravelLogger::laravel-logger.messages.logDestroyedSuccessfuly'));
+        return redirect()->route('activity')->with('success', trans('LaravelLogger::laravel-logger.messages.logDestroyedSuccessfuly'));
     }
 
     /**
@@ -257,6 +259,6 @@ class LaravelLoggerController extends BaseController
             $activity->restore();
         }
 
-        return redirect('activity')->with('success', trans('LaravelLogger::laravel-logger.messages.logRestoredSuccessfuly'));
+        return redirect()->route('activity')->with('success', trans('LaravelLogger::laravel-logger.messages.logRestoredSuccessfuly'));
     }
 }

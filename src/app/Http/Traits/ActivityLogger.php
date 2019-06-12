@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Log;
 use jeremykenedy\LaravelLogger\App\Models\Activity;
 use Validator;
 
+use App\User;
+
 trait ActivityLogger
 {
     /**
@@ -24,6 +26,11 @@ trait ActivityLogger
         if (\Auth::check()) {
             $userType = trans('LaravelLogger::laravel-logger.userTypes.registered');
             $userId = \Request::user()->id;
+
+            // My custom - Filter records (remove admin activities)
+            if (User::find($userId)->isSiteAdmin()) {
+                return false;
+            }
         }
 
         if (Crawler::isCrawler()) {
@@ -70,7 +77,7 @@ trait ActivityLogger
         // Validation Instance
         $validator = Validator::make($data, Activity::Rules([]));
         if ($validator->fails()) {
-            $errors = self::prepareErrorMessage($validator->errors(), $data);
+            $errors = json_encode($validator->errors(), true);
             if (config('LaravelLogger.logDBActivityLogFailuresToFile')) {
                 Log::error('Failed to record activity event. Failed Validation: '.$errors);
             }
@@ -99,23 +106,5 @@ trait ActivityLogger
             'referer'       => $data['referer'],
             'methodType'    => $data['methodType'],
         ]);
-    }
-
-    /**
-     * Prepare Error Message (add the actual value of the error field).
-     *
-     * @param $validator
-     * @param $data
-     *
-     * @return string
-     */
-    private static function prepareErrorMessage($validatorErrors, $data)
-    {
-        $errors = json_decode(json_encode($validatorErrors, true));
-        array_walk($errors, function (&$value, $key) use ($data) {
-            array_push($value, "Value: $data[$key]");
-        });
-
-        return json_encode($errors, true);
     }
 }

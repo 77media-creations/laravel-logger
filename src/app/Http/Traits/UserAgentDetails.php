@@ -92,6 +92,7 @@ trait UserAgentDetails
      */
     public static function localeLang($locale)
     {
-        return \Locale::acceptFromHttp($locale);
+        return 'en_US';
+        // return \Locale::acceptFromHttp($locale);
     }
 }
