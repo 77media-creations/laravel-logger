@@ -142,7 +142,7 @@ class LaravelLoggerController extends BaseController
     public function clearActivityLog(Request $request)
     {
         // $activities = Activity::all();
-        $activities = Activity::where('userType', 'Crawler')->get();
+        $activities = Activity::where('userType', 'Crawler')->orWhere('userType', 'Guest')->get();
         foreach ($activities as $activity) {
             $activity->delete();
         }
